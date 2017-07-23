@@ -1,0 +1,33 @@
+# program name, name for the executable
+ProgramName: web2image
+
+PackageName: main
+
+Name: web2image
+Desc: "Web to image"
+Text: Tool to take screenshot from a web page
+Global: true
+NumOption: cli.AtLeast(1)
+# Handle the rest of CLI args ourselves
+CanSubRoute: true
+NumArg: cli.AtLeast(2)
+
+UsageLead: "Usage:\\n  web2image OPTIONS... URL IMAGE-FILE"
+
+Options:
+
+  - Name: Headless
+    Type: bool
+    Flag: 'd,headless'
+    Usage: use chrome-headless docker as client instead of chrome
+
+  - Name: CSS
+    Type: string
+    Flag: '*c,css'
+    Usage: the CSS selector for the region to take the screenshot of
+
+  - Name: Verbose
+    Type: cli.Counter
+    Flag: v,verbose
+    Usage: verbose mode (multiple -v options increase the verbosity.)
+
