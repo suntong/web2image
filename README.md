@@ -52,7 +52,7 @@ The following examples assumes that you've [setup chrome-headless](https://githu
 
 and the result is:
 
-image:deadpool.png["deadpool.png",link="deadpool.png"]
+![deadpool](deadpool.png "deadpool.png")
 
 # Installation
 
