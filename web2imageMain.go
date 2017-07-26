@@ -16,6 +16,13 @@ import (
 )
 
 ////////////////////////////////////////////////////////////////////////////
+// Constant and data type/structure definitions
+
+type rootOptsT struct {
+	Verbose int
+}
+
+////////////////////////////////////////////////////////////////////////////
 // Global variables definitions
 
 var (
@@ -24,7 +31,10 @@ var (
 	buildTime = "2017-07-23"
 )
 
-var rootArgv *rootT
+var (
+	rootArgv *rootT
+	rootOpts rootOptsT
+)
 
 ////////////////////////////////////////////////////////////////////////////
 // Function definitions
@@ -35,6 +45,10 @@ func main() {
 	// default writer is os.Stdout
 	if err := cli.Root(root).Run(os.Args[1:]); err != nil {
 		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
 	}
-	fmt.Println("")
+	if rootOpts.Verbose >= 1 {
+		fmt.Println("Screenshot taken.")
+	}
+	os.Exit(0)
 }
