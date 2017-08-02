@@ -24,11 +24,19 @@ The following examples assumes that you've [setup chrome-headless](https://githu
 
 ## Film info from cmore.se
 
-    web2image -d -c '#main-wrapper' 'http://www.cmore.se/film/3643033-deadpool' deadpool.png
+    web2image -d -c '#main-wrapper' 'http://www.cmore.se/film/3643033-deadpool' example-deadpool.png
 
 and the result is:
 
-![deadpool](deadpool.png "deadpool.png")
+![deadpool](example-deadpool.png "deadpool.png")
+
+## US market indexes chart
+
+    web2image -d -s '5s' -c 'div > section.market-indexes-component > div.market-indexes-container' http://www.morningstar.com/ example-US-market-indexes.png
+
+and the result is:
+
+![US-market-indexes](example-US-market-indexes.png "US-market-indexes.png")
 
 # Installation
 

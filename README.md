@@ -13,6 +13,7 @@
   - [chrome-headless](#chrome-headless)
 - [Examples](#examples)
   - [Film info from cmore.se](#film-info-from-cmorese)
+  - [US market indexes chart](#us-market-indexes-chart)
 - [Installation](#installation)
   - [Author](#author)
 
@@ -25,7 +26,7 @@ The `web2image` will take a screenshot of a given web page.
 ### $ web2image
 ```sh
 Web to image
-built on 2017-07-23
+built on 2017-08-02
 
 Tool to take screenshot from a web page
 
@@ -34,10 +35,12 @@ Usage:
 
 Options:
 
-  -h, --help       display help information
-  -d, --headless   use chrome-headless docker as client instead of chrome
-  -c, --css       *the CSS selector for the region to take the screenshot of
-  -v, --verbose    verbose mode (multiple -v options increase the verbosity.)
+  -h, --help         display help information
+  -d, --headless     use chrome-headless docker as client instead of chrome
+  -c, --css         *the CSS selector for the region to take the screenshot of
+  -s, --sleep[=3s]   time to sleep before waiting for above CSS (default: 3 seconds)
+  -w, --wait-for     the CSS selector to wait for before taking the screenshot
+  -v, --verbose      verbose mode (multiple -v options increase the verbosity.)
 ```
 
 ### chrome-headless
@@ -48,11 +51,19 @@ The following examples assumes that you've [setup chrome-headless](https://githu
 
 ## Film info from cmore.se
 
-    web2image -d -c '#main-wrapper' 'http://www.cmore.se/film/3643033-deadpool' deadpool.png
+    web2image -d -c '#main-wrapper' 'http://www.cmore.se/film/3643033-deadpool' example-deadpool.png
 
 and the result is:
 
-![deadpool](deadpool.png "deadpool.png")
+![deadpool](example-deadpool.png "deadpool.png")
+
+## US market indexes chart
+
+    web2image -d -s '5s' -c 'div > section.market-indexes-component > div.market-indexes-container' http://www.morningstar.com/ example-US-market-indexes.png
+
+and the result is:
+
+![US-market-indexes](example-US-market-indexes.png "US-market-indexes.png")
 
 # Installation
 
