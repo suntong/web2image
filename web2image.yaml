@@ -26,6 +26,17 @@ Options:
     Flag: '*c,css'
     Usage: the CSS selector for the region to take the screenshot of
 
+  - Name: Sleep
+    Type: string
+    Flag: s,sleep
+    Usage: 'time to sleep before waiting for above CSS (default: 3 seconds)'
+    Value: 3s
+
+  - Name: WaitFor
+    Type: string
+    Flag: w,wait-for
+    Usage: the CSS selector to wait for before taking the screenshot
+
   - Name: Verbose
     Type: cli.Counter
     Flag: v,verbose

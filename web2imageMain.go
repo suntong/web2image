@@ -12,6 +12,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/labstack/gommon/color"
 	"github.com/mkideal/cli"
 )
 
@@ -19,6 +20,8 @@ import (
 // Constant and data type/structure definitions
 
 type rootOptsT struct {
+	Sleep   string
+	WaitFor string
 	Verbose int
 }
 
@@ -51,4 +54,13 @@ func main() {
 		fmt.Println("Screenshot taken.")
 	}
 	os.Exit(0)
+}
+
+// abortOn will quit on anticipated errors gracefully without stack trace
+func abortOn(errCase string, e error) {
+	if e != nil {
+		fmt.Fprintf(os.Stderr, "[%s] %s, %s: %v\n",
+			color.White(progname), color.Red("Error"), errCase, e)
+		os.Exit(1)
+	}
 }

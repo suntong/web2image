@@ -20,6 +20,8 @@ type rootT struct {
 	cli.Helper
 	Headless bool        `cli:"d,headless" usage:"use chrome-headless docker as client instead of chrome"`
 	CSS      string      `cli:"*c,css" usage:"the CSS selector for the region to take the screenshot of"`
+	Sleep    string      `cli:"s,sleep" usage:"time to sleep before waiting for above CSS (default: 3 seconds)" dft:"3s"`
+	WaitFor  string      `cli:"w,wait-for" usage:"the CSS selector to wait for before taking the screenshot"`
 	Verbose  cli.Counter `cli:"v,verbose" usage:"verbose mode (multiple -v options increase the verbosity.)"`
 }
 
@@ -46,7 +48,7 @@ var root = &cli.Command{
 //  var (
 //          progname  = "web2image"
 //          VERSION   = "0.1.0"
-//          buildTime = "2017-07-23"
+//          buildTime = "2017-08-02"
 //  )
 
 //  var rootArgv *rootT

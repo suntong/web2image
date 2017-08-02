@@ -16,7 +16,8 @@ func web2image(ctx *cli.Context) error {
 	// ctx.JSON(ctx.Argv())
 	// fmt.Println()
 	rootArgv = ctx.RootArgv().(*rootT)
-	rootOpts.Verbose = rootArgv.Verbose.Value()
+	rootOpts.Sleep, rootOpts.WaitFor, rootOpts.Verbose =
+		rootArgv.Sleep, rootArgv.WaitFor, rootArgv.Verbose.Value()
 
 	cdpScreenshot(rootArgv.Headless, ctx.Args()[0], rootArgv.CSS, ctx.Args()[1])
 

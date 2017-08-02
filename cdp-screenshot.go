@@ -20,13 +20,15 @@ func cdpScreenshot(headless bool, url, css, imgf string) {
 	var c *cdp.CDP
 	if headless {
 		// create chrome-headless instance
-		c, err = cdp.New(ctxt, cdp.WithTargets(client.New().WatchPageTargets(ctxt)), cdp.WithErrorf(log.Printf))
+		c, err = cdp.New(ctxt, cdp.WithTargets(client.New().WatchPageTargets(ctxt)))
 	} else {
 		// create chrome instance
 		c, err = cdp.New(ctxt)
 	}
-	if err != nil {
-		log.Fatal(err)
+	abortOn("Create chrome instance", err)
+	if rootOpts.Verbose >= 1 {
+		err := cdp.WithErrorf(log.Printf)(c)
+		abortOn("Turn on logging", err)
 	}
 
 	// run task list
@@ -55,10 +57,17 @@ func cdpScreenshot(headless bool, url, css, imgf string) {
 }
 
 func screenshot(urlstr, sel string, res *[]byte) cdp.Tasks {
-	return cdp.Tasks{
+	s, err := time.ParseDuration(rootOpts.Sleep)
+	abortOn("Parsing sleep time", err)
+
+	t := cdp.Tasks{
 		cdp.Navigate(urlstr),
-		cdp.Sleep(2 * time.Second),
-		cdp.WaitVisible(sel, cdp.ByID),
-		cdp.Screenshot(sel, res, cdp.ByID),
+		cdp.Sleep(s),
+		cdp.WaitVisible(sel, cdp.ByQuery),
+		cdp.Screenshot(sel, res, cdp.ByQuery),
 	}
+	// if len(Opts.WaitFor) != 0 {
+	//   cdp.WaitVisible(Opts.WaitFor, cdp.ByQuery),
+	// }
+	return t
 }
