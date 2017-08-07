@@ -38,13 +38,23 @@ and the result is:
 
 ![US-market-indexes](example-US-market-indexes.png "US-market-indexes.png")
 
+# Download binaries
+
+The latest binary executables are available under  
+https://bintray.com/suntong/bin/web2image#files/web2image  
+as the result of the Continuous-Integration process.
+
+I.e., they are built right from the source code during every git commit automatically by [travis-ci](https://travis-ci.org/).
+
+Pick & choose the binary executable that suits your OS and its architecture. E.g., for Linux, it would most probably be the `-linux-amd64` file. If your OS and its architecture is not available in the download list, please let me know and I'll add it.
+
 # Installation
+
+To install the source code instead:
 
 ```
 go get github.com/suntong/web2image
 ```
-
-Debian package will be provided shortly.
 
 ## Author
 
