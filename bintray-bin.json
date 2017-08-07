@@ -1,0 +1,26 @@
+{
+    "package": {
+        "name": "web2image",
+        "repo": "bin",
+        "subject": "suntong",
+        "desc": "Web to image.",
+        "website_url": "https://github.com/suntong/web2image",
+        "issue_tracker_url": "https://github.com/suntong/web2image/issues",
+        "vcs_url": "https://github.com/suntong/web2image.git",
+        "licenses": ["MIT"],
+        "public_download_numbers": false
+    },
+
+    "version": {
+        "name": "latest",
+        "gpgSign": false
+    },
+
+    "files": [{
+	"includePattern": "out/(.*)", "uploadPattern": "web2image/$1",
+        "matrixParams": {
+            "override": 1
+        }
+    }],
+    "publish": true
+}
